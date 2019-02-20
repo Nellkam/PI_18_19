@@ -1,6 +1,6 @@
 # PI_18_19
 
-Repositorio de Programção Imperativa 2018/2019 com resoluções das fichas, programas entre outros.
+Repositorio de Programação Imperativa 2018/2019 com resoluções das fichas, programas entre outros.
 
 -> Enunciados: Enunciados de fichas, testes e projectos
 
