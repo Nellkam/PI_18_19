@@ -10,4 +10,8 @@ Repositorio de Programação Imperativa 2018/2019 com resoluções das fichas, p
 
 
 
+Exercicios abertos a melhores sugestoes de resolucao!
+
+
+
 (CONTEUDO EM CONSTANTE UPDATE)
