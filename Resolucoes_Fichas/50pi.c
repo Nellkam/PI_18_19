@@ -9,9 +9,14 @@
 //------------------------------------------------
 
 void ex1(){
-    int num=1,maior=0;
+    int num=1,maior;
     
-    printf("Insira sequencia de numeros inteiros: ");
+    printf("Insira sequencia de numeros inteiros ( 0 -> terminar ): ");
+    scanf("%d",&maior);
+    
+    if(getchar()==(int)'\n')
+        num=0;
+    
     while(num){
         scanf("%d",&num);
         maior= (num>maior) ? num : maior;
