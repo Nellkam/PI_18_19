@@ -287,7 +287,7 @@ void truncW (char* t, int n){
 
 char charMaisfreq (char* s){
     
-    // i_maxCh -> indice char com mais ocurrencias
+    // i_maxCh -> indice char com mais ocorrencias
     // ch_cmp -> indice atual em s
     // i -> indice de comparacao
     
@@ -308,11 +308,11 @@ char charMaisfreq (char* s){
             i_maxCh=ch_cmp;            
         }
 
-        ch_cmp+=currentCount+1; // jump ocurrencias
+        ch_cmp+=currentCount+1; // jump ocorrencias
         currentCount=0;
     }
 
-    printf("Char mais Frequente %c com %d ocurrencias\n\n",s[i_maxCh],maxCount);
+    printf("Char mais Frequente %c com %d ocorrencias\n\n",s[i_maxCh],maxCount);
     
     return s[i_maxCh];
 
@@ -346,7 +346,7 @@ int iguaisConsecutivos (char* s){
         ch_cmp++;
     }
 
-    printf("Maior sequencia de chars consecutivos: %c com %d ocurrencias\n\n",s[i_maxSeq],maxCount);
+    printf("Maior sequencia de chars consecutivos: %c com %d ocorrencias\n\n",s[i_maxSeq],maxCount);
 
     return maxCount;
 }
