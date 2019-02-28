@@ -62,12 +62,13 @@ int soma(int *v, int N){
 // EXERCICIO 5
 //------------------------------------------------
 
+// N -> numero de elementos a verificar no array
 int maximum( int *v , int N , int *m){
     int max;
 
     if(N<=0){
         printf("\n\n\n!!!!!??? ERRO ARGUMENTOS !!!!!?????\n\n\n");
-        return 0;
+        return -1;
     }
 
     N--;
@@ -81,7 +82,7 @@ int maximum( int *v , int N , int *m){
 
     *m=max;
 
-    return max;
+    return 0;
 }
 
 
@@ -114,16 +115,15 @@ void quadrados ( int *q , int N){
 //------------------------------------------------
 
 // V contem a valores da linha anterior
+// N nuemro linha seguinte
 void pascal ( int *v , int N ){
     int pascalAnterior[N], i;
 
     for ( i=0 ; i<N-1 ; i++)
-        pascalAnterior[i]=v[i];
+      pascalAnterior[i]=v[i];  
     
-    for ( i=1 ; pascalAnterior[i-1]!=1 ; i++)
+    for ( i=1 ; i<N-1 ; i++)
         v[i]=pascalAnterior[i-1]+pascalAnterior[i];
     
     v[i]=1;
-    v[i+1]=0;
 }
-
