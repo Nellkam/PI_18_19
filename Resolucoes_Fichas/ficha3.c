@@ -71,7 +71,7 @@ int maximum( int *v , int N , int *m){
     }
 
     N--;
-    maximum=v[N];
+    max=v[N];
     N--;
 
     while(N!=-1){
@@ -79,7 +79,7 @@ int maximum( int *v , int N , int *m){
         N--;
     }
 
-    *p=max;
+    *m=max;
 
     return max;
 }
@@ -121,7 +121,7 @@ void pascal ( int *v , int N ){
         pascalAnterior[i]=v[i];
     
     for ( i=1 ; pascalAnterior[i-1]!=1 ; i++)
-        v[i]=pascalAnterior[i-1]+pascaAnterior[i];
+        v[i]=pascalAnterior[i-1]+pascalAnterior[i];
     
     v[i]=1;
     v[i+1]=0;
