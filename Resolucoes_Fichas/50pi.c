@@ -54,8 +54,29 @@ void ex3(){
     int num=1,maior1=0,maior2=0,temp;
 
     printf("Insira sequencia de numeros inteiros: ");
+    
+    scanf("%d",&maior1);
+    if(!maior1) 
+        return;
+    
+    scanf("%d",&maior2);
+    if(!maior2){
+        printf("Maior: %d / 2nd Maior: not defined ",maior1);
+        return;
+    }
+    
+    if(maior2>maior1){
+        temp=maior1;
+        maior1=maior2;
+        maior2=temp;
+    }
+
     while(num){
         scanf("%d",&num);
+        
+        if(!num) 
+            break;
+
         temp=maior1;
         maior1 = (num>maior1) ? num : maior1;
 
