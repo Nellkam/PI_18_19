@@ -127,7 +127,7 @@ int qDig (unsigned int n){
     int nTimes10=0;   
     
     if(n==0)
-        return 0;
+        return 1;
     
     while(n){
         nTimes10++;
