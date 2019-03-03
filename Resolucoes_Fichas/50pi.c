@@ -167,6 +167,8 @@ char* myStrCpy (char* s1 , char* s2){
         s1[i]=s2[i];
     
     s1[i]='\0'; // adiciona '\0' no fim da string copiada
+    
+    return s1;
 }
 
 
