@@ -202,7 +202,7 @@ int myStrcmp (char* s1 , char* s2){
 char* myStrstr (char* s1 , char* s2){
     int indiceS2, indiceS1, indiceS1_2;
     
-    if(s1[0]=='\0'&&s2[0]=='\0') return s1;
+    if(s1[0]=='\0' && s2[0]=='\0') return s1;
     
     for (indiceS1=0 ; s1[indiceS1]!='\0' ; indiceS1++ )        
         for( indiceS1_2=indiceS1,indiceS2=0 ; s1[indiceS1_2]==s2[indiceS2] || s2[indiceS2]=='\0' ; indiceS1_2++,indiceS2++ )
