@@ -489,3 +489,25 @@ int maiorSufixo (char* s1, char* s2){
 
     return maxCount;
 }
+
+
+
+
+//------------------------------------------------
+// EXERCICIO 27
+//------------------------------------------------
+
+void myMerge (int r[],int a[], int b[], int na, int nb){
+    int indexA=0,indexB=0,indexR=0;
+
+    while(indexR<na+nb){
+        if(indexA==na)
+            r[indexR] = b[indexB++];
+        else if(indexB==nb)
+            r[indexR] = a[indexA++];        
+        else 
+            r[indexR] = ( a[indexA]<b[indexB] ) ? a[indexA++] : b[indexB++];
+
+        indexR++;
+    }
+}
