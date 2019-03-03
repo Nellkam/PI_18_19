@@ -456,23 +456,26 @@ int maiorSufixo (char* s1, char* s2){
 
     int i_s1=1 , i_s2 , ch_cmp=0 , maxCount=0 , currentCount=0, i_maxSeq=0 , endS2=0;
 
-    while( s1[ch_cmp]!='\0' && s2[endS2]!='\0'  ){
-        ch_cmp++;
-        endS2++;
-    }
-
-    while(i_s1){
+    ch_cmp=strlen(s1)-1;
+    endS2=strlen(s2)-1;
+    
+    while(ch_cmp!=-1){
         for ( 
                 i_s1=ch_cmp , i_s2=endS2 ; 
-                s1[i_s1]==s2[i_s2] && i_s1!=-1 && i_s2!=-1 ; 
+                s1[i_s1]==s2[i_s2]; 
                 i_s1--,i_s2--
             
             )
-            currentCount++;
+            {
+              currentCount++;
+              if(i_s1==0 || i_s2==0)
+                break;
+            }
+            
 
             if(currentCount>maxCount){
                 maxCount=currentCount;
-                i_maxSeq=ch_cmp-maxCount;
+                i_maxSeq=ch_cmp-maxCount+1;
             }
 
             ch_cmp--;
