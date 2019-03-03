@@ -124,11 +124,14 @@ int trailingZ (unsigned int n){
 //------------------------------------------------
 
 int qDig (unsigned int n){
-    int nTimes10=0;
+    int nTimes10=0;   
     
-    while(n>1){
-        n=n/10;
+    if(n==0)
+        return 0;
+    
+    while(n){
         nTimes10++;
+        n=n/10;
     }
 
     return nTimes10;
