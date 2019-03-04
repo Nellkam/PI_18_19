@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <string.h>
+#include <ctype.h>
 
 
 
@@ -91,7 +92,7 @@ void ex3(){
 
 
 //------------------------------------------------
-// EXERCICIO 4
+// EXERCICIO 4 10/10
 //------------------------------------------------
 
 int bitsUm (unsigned int n){
@@ -120,14 +121,14 @@ int trailingZ (unsigned int n){
 
 
 //------------------------------------------------
-// EXERCICIO 6
+// EXERCICIO 6 10/10
 //------------------------------------------------
 
 int qDig (unsigned int n){
     int nTimes10=0;   
     
     if(n==0)
-        return 0;
+        return 1;
     
     while(n){
         nTimes10++;
@@ -140,7 +141,7 @@ int qDig (unsigned int n){
 
 
 //------------------------------------------------
-// EXERCICIO 7
+// EXERCICIO 7 10/10
 //------------------------------------------------
 
 char* myStrcat (char* s1 , char* s2){
@@ -160,7 +161,7 @@ char* myStrcat (char* s1 , char* s2){
 
 
 //------------------------------------------------
-// EXERCICIO 8
+// EXERCICIO 8 10/10
 //------------------------------------------------
 
 char* myStrCpy (char* s1 , char* s2){
@@ -177,7 +178,7 @@ char* myStrCpy (char* s1 , char* s2){
 
 
 //------------------------------------------------
-// EXERCICIO 9
+// EXERCICIO 9 10/10
 //------------------------------------------------
 
 int myStrcmp (char* s1 , char* s2){
@@ -199,7 +200,7 @@ int myStrcmp (char* s1 , char* s2){
 
 
 //------------------------------------------------
-// EXERCICIO 10
+// EXERCICIO 10 10/10
 //------------------------------------------------
 
 char* myStrstr (char* s1 , char* s2){
@@ -218,7 +219,7 @@ char* myStrstr (char* s1 , char* s2){
 
 
 //------------------------------------------------
-// EXERCICIO 11
+// EXERCICIO 11 10/10
 //------------------------------------------------
 
 void myStrrev (char* s){
@@ -239,7 +240,7 @@ void myStrrev (char* s){
 
 
 //------------------------------------------------
-// EXERCICIO 12
+// EXERCICIO 12 10/10
 //------------------------------------------------
 
 void myStrnoV (char* s){
@@ -302,7 +303,7 @@ void truncW (char* t, int n){
 
 
 //------------------------------------------------
-// EXERCICIO 14
+// EXERCICIO 14 10/10
 //------------------------------------------------
 
 char charMaisfreq (char* s){
@@ -341,7 +342,7 @@ char charMaisfreq (char* s){
 
 
 //------------------------------------------------
-// EXERCICIO 15
+// EXERCICIO 15 10/10
 //------------------------------------------------
 
 int iguaisConsecutivos (char* s){
@@ -410,7 +411,7 @@ int difConsecutivos (char* s){
 
 
 //------------------------------------------------
-// EXERCICIO 17
+// EXERCICIO 17 10/10
 //------------------------------------------------
 
 int maiorPrefixo (char* s1, char* s2){
@@ -452,7 +453,7 @@ int maiorPrefixo (char* s1, char* s2){
 
 
 //------------------------------------------------
-// EXERCICIO 18
+// EXERCICIO 18 10/10
 //------------------------------------------------
 
 int maiorSufixo (char* s1, char* s2){
@@ -497,7 +498,204 @@ int maiorSufixo (char* s1, char* s2){
 
 
 //------------------------------------------------
-// EXERCICIO 27
+// EXERCICIO 19
+//------------------------------------------------
+
+int sufPref ( char s1[] , char s2[]){
+    
+    // sem apetite :)
+    
+    return 0;
+}
+
+
+
+
+
+//------------------------------------------------
+// EXERCICIO 20 10/10
+//------------------------------------------------
+
+int contaPal (char *s){
+    int index=0,contador=0;
+
+    while(s[index]!='\0'){
+        
+        if( isspace(s[index++])  )
+            continue;
+        
+        for( index ; s[index]!=' ' && s[index]!='\0' ; index++);
+            
+        contador++;
+    }
+
+    return contador;
+}
+
+
+
+
+//------------------------------------------------
+// EXERCICIO 21 10/10
+//------------------------------------------------
+
+int contaVogais (char *s){
+    int index=0,contador=0;
+
+    for(index=0 ; s[index]!='\0' ; index++){
+        if 
+            (
+                s[index]=='A' || s[index]=='E' || s[index]=='I' || s[index]=='O' || s[index]=='U' ||
+                s[index]=='a' || s[index]=='e' || s[index]=='i' || s[index]=='o' || s[index]=='u' 
+            )
+            contador++;
+    }
+
+    return contador;
+}
+
+
+
+
+//------------------------------------------------
+// EXERCICIO 22 10/10
+//------------------------------------------------
+
+int contida (char *a, char *b){
+    int indexA=0,indexB=0,iguais=0;
+
+    if(a[0]=='\0')
+        return 1;
+
+    while ( indexA<=strlen(a)){
+        for (indexB=0 ; indexB<=strlen(b) ; indexB++)
+            if( a[indexA]==b[indexB] ){
+                iguais++;
+                break;
+            }
+
+        indexA++;
+    }
+
+    return iguais==(strlen(a)+1);
+}
+
+
+
+
+//------------------------------------------------
+// EXERCICIO 23 10/10
+//------------------------------------------------
+
+int palindorome ( char *s ){
+    int inicio=0,fim;
+    fim=strlen(s)-1;
+
+    //compara as sucessivas pontas da string
+    while ( inicio!=fim && inicio<fim ){
+        if(s[inicio]!=s[fim])
+            return 0;
+        inicio++;
+        fim--;
+    }
+
+    return 1;
+}
+
+
+
+
+//------------------------------------------------
+// EXERCICIO 24 10/10
+//------------------------------------------------
+
+int remRep (char *x){
+    char temp[strlen(x)+1];
+    int indeX=1,indexTemp=1;
+
+    temp[0]=x[0];
+
+    //preenche array temporario com a string final
+    while(x[indeX]!='\0'){
+        if( x[indeX]==temp[indexTemp-1] ){
+            indeX++;
+            continue;
+        }
+            
+        temp[indexTemp]=x[indeX];
+        indeX++;
+        indexTemp++;
+    }
+    temp[indexTemp]='\0';
+    
+    //mete resultado final em t
+    strcpy(x,temp);
+
+    return strlen(x);
+}
+
+
+
+
+//------------------------------------------------
+// EXERCICIO 25 10/10
+//------------------------------------------------
+
+int limpaEspacos (char *t){
+    int indexT=0,indexTemp=0;
+    char temp[strlen(t)+1];
+
+    //preenche array temporario com a string final
+    while( t[indexT]!='\0' ){
+        
+        if(temp[indexTemp-1]==' ' && t[indexT]==' '){
+            indexT++;
+            continue;
+        }
+
+        temp[indexTemp]=t[indexT];
+        indexT++;
+        indexTemp++;
+    }
+    temp[indexTemp]='\0';
+
+    //mete resultado final em t
+    strcpy(t,temp);
+
+    return strlen(t);
+}
+
+
+
+
+//------------------------------------------------
+// EXERCICIO 26 10/10
+//------------------------------------------------
+
+void insere (int *v, int N, int x){
+    int indexInsere=0,index=0;
+
+    //encontra indice a inserir
+    for(indexInsere=0 ; v[indexInsere]<x && indexInsere<N ; indexInsere++);
+
+    //fim do vector
+    if(indexInsere==N)
+        v[indexInsere]=x;
+    //dentro do vector
+    else {
+        //move todos os elementos do fim ate indice insercao 1 posicao a frente
+        for(index=N-1 ; index!=indexInsere-1 ; index--)
+            v[index+1]=v[index];
+        
+        v[indexInsere]=x;// insere valor
+    }
+}
+
+
+
+
+//------------------------------------------------
+// EXERCICIO 27 10/10
 //------------------------------------------------
 
 void myMerge (int r[],int a[], int b[], int na, int nb){
@@ -514,3 +712,91 @@ void myMerge (int r[],int a[], int b[], int na, int nb){
         indexR++;
     }
 }
+
+
+
+
+//------------------------------------------------
+// EXERCICIO 28 10/10
+//------------------------------------------------
+
+int crescente (int *a , int i, int j){
+    while( i!=j ){
+        if( a[i]>a[i+1] )
+            return 0;
+        i++;
+    }
+
+    return 1;
+}
+
+
+
+//------------------------------------------------
+// EXERCICIO 29 10/10
+//------------------------------------------------
+
+int retiraNeg (int *v, int N){
+    int temp[N];
+    int index=0,indexInsere=0,contador=0;
+
+    for(index=0 ; index<N ; index++)
+        temp[index]=v[index];
+    
+    for(index=0 ; index<N ; index++){
+        v[index]=0; // reset array v
+        if(temp[index]>=0){
+            v[indexInsere]=temp[index];
+            indexInsere++;
+            contador++;
+        }
+    }
+    
+    return contador; 
+}
+
+
+
+
+//------------------------------------------------
+// EXERCICIO 30
+//------------------------------------------------
+ int menosFreq (int *v, int N){
+    int index=0,contador=0,menFreq,menFreqCounter=N,numAtual;
+    
+    numAtual=v[0];
+    while(index<N){
+        if(v[index]==numAtual)
+            contador++;
+        if(v[index]!=numAtual){
+            menFreq = ( contador<menFreqCounter ) ? v[index-1] : menFreq;
+            menFreqCounter = ( contador<menFreqCounter ) ? contador : menFreqCounter;
+            contador=0;
+            numAtual=v[index];
+            continue;
+        }
+        index++;
+    }
+    return menFreq;
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
