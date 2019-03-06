@@ -759,44 +759,109 @@ int retiraNeg (int *v, int N){
 
 
 //------------------------------------------------
-// EXERCICIO 30
+// EXERCICIO 30 10/10
 //------------------------------------------------
- int menosFreq (int *v, int N){
-    int index=0,contador=0,menFreq,menFreqCounter=N,numAtual;
-    
-    numAtual=v[0];
-    while(index<N){
-        if(v[index]==numAtual)
+
+int menosFreq (int *v, int sizeV){
+    int index=0,indexCompara,contador=0,minCounter=sizeV+1,min;
+
+    min=v[0];
+
+    while(index<sizeV){
+        for(indexCompara=index ; indexCompara<sizeV && v[index]==v[indexCompara] ; indexCompara++ )
             contador++;
-        if(v[index]!=numAtual){
-            menFreq = ( contador<menFreqCounter ) ? v[index-1] : menFreq;
-            menFreqCounter = ( contador<menFreqCounter ) ? contador : menFreqCounter;
-            contador=0;
-            numAtual=v[index];
-            continue;
+        if(contador<minCounter){
+            min=v[index];
+            minCounter=contador;
         }
-        index++;
+        index+=contador; // jump ocorrencias iguais do num
+        contador=0;
     }
-    return menFreq;
- }
+    return min;
+}
 
 
 
+//------------------------------------------------
+// EXERCICIO 31 10/10
+//------------------------------------------------
+
+
+int maisFreq (int *v, int sizeV){
+    int index=0,indexCompara,contador=0,maxCounter=0,max;
+
+    while(index<sizeV){
+        for(indexCompara=index ; indexCompara<sizeV && v[index]==v[indexCompara] ; indexCompara++ )
+            contador++;
+
+        if(contador>maxCounter){
+            max=v[index];
+            maxCounter=contador;
+        }
+        index+=contador; // jump ocorrencias iguais do num
+        contador=0;
+    }
+    return max;
+}
 
 
 
+//------------------------------------------------
+// EXERCICIO 32
+//------------------------------------------------
+
+int maxCresc (int v[],int sizeV){
+    int index=0,index2,maxCounter=0,contador=1,maxIndex;
+    
+    while(index<sizeV){
+        for(index2=index+1 ; v[index]!=v[index2] && index2<sizeV ; index2++)
+            contador++;
+        
+        if(contador>maxCounter){
+            maxCounter=contador;
+            maxIndex=index;
+        }
+        
+        index+=contador; // jump sequencia actual
+        contador=0;
+    }
+    return maxIndex;
+}
 
 
 
+//------------------------------------------------
+// EXERCICIO 33 10/10
+//------------------------------------------------
 
+int elimRep (int v[], int n){
+    int indexCopia,indexV,indexEscrita=0,newSizeV=0;
+    int copia[n];
+    
+    // copia de v
+    for(indexV=0 ; indexV<n ; indexV++)
+        copia[indexV]=v[indexV];
 
-
-
-
-
-
-
-
-
-
+    // indice de escrita representa onde colocar o inteiro em v, se este nao existir
+    
+    //percorre copia
+    for(indexCopia=0 ; indexCopia<n ; indexCopia++ ){
+        //verifica se elemento de copia ja existe ate ao indice de escrita de v
+        for(indexV=0 ; indexV<=indexEscrita ; indexV++)
+            if(copia[indexCopia]==v[indexV]){
+               indexV++; // necessario incrementar por causa da decremento seguinte
+               break;
+            }
+       
+        indexV--; // necessario decrementar por causa do <= ciclo for
+        if(indexV==indexEscrita){ // se verdade, elemento ainda nao existe
+            v[indexEscrita]=copia[indexCopia];
+            indexEscrita++;
+            newSizeV++;
+        }
+        
+    }
+    
+    return newSizeV;
+}
 
