@@ -807,25 +807,23 @@ int maisFreq (int *v, int sizeV){
 
 
 //------------------------------------------------
-// EXERCICIO 32
+// EXERCICIO 32 10/10
 //------------------------------------------------
 
 int maxCresc (int v[],int sizeV){
-    int index=0,index2,maxCounter=0,contador=1,maxIndex;
+    int index=0,index2,maxCounter=0,contador=1;
     
     while(index<sizeV){
-        for(index2=index+1 ; v[index]!=v[index2] && index2<sizeV ; index2++)
+        for(index2=index+1 ; v[index]<=v[index2] && index2<sizeV ; index2++,index++)
             contador++;
         
-        if(contador>maxCounter){
+        if(contador>maxCounter)
             maxCounter=contador;
-            maxIndex=index;
-        }
         
-        index+=contador; // jump sequencia actual
-        contador=0;
+        index++;
+        contador=1;
     }
-    return maxIndex;
+    return maxCounter;
 }
 
 
@@ -864,4 +862,237 @@ int elimRep (int v[], int n){
     
     return newSizeV;
 }
+
+
+//------------------------------------------------
+// EXERCICIO 34 10/10
+//------------------------------------------------
+
+int elimRepOrd(int v[], int sizeV){
+    int newSize=1,index=1,indexInsere=1;
+    
+    if(!sizeV) return 0;
+
+    while(1){
+        for(index; v[index]==v[index-1] && index<sizeV ; index++);
+    
+        if(index==sizeV) break;
+        
+        v[indexInsere]=v[index];
+        index++;
+        indexInsere++;
+        newSize++;
+    }
+    
+    return newSize;
+}
+
+
+
+
+//------------------------------------------------
+// EXERCICIO 35 10/10 
+//------------------------------------------------
+
+int comunsOrd (int a[],int sizeA, int b[], int sizeB){
+    int contador=0,indexA=0,indexB=0;
+    
+    if(!sizeA || !sizeB) return 0;
+    
+    while(indexA<sizeA && indexB<sizeB){
+        
+        if(a[indexA]==b[indexB]){
+            contador++;
+            indexA++;
+            indexB++;
+        }
+        else if(a[indexA]>b[indexB])
+            for(indexB+=1 ; b[indexB]==b[indexB-1] && indexB<sizeB; indexB++);
+        else
+            for(indexA+=1 ; a[indexA]==a[indexA-1] && indexA<sizeA; indexA++);
+    }
+
+    return contador;
+} 
+
+
+
+
+//------------------------------------------------
+// EXERCICIO 36 
+//------------------------------------------------
+
+int comuns (int a[], int sizeA, int b[], int sizeB){
+    int indexA=0,indexB=0,contador=0;
+    
+    if(!sizeA || !sizeB) return 0;
+
+    //procura do vector a em b
+    for(indexA=0 ; indexA<sizeA ; indexA++)
+        for(indexB=0 ; indexB<sizeB ; indexB++)
+            if(a[indexA]==b[indexB])
+                contador++;
+
+    return contador;
+}
+
+
+
+//------------------------------------------------
+// EXERCICIO 37 10/10 
+//------------------------------------------------
+
+int minInd (int v[], int sizeV){
+    int index=1,minIndex,minNum;
+    
+    if(!sizeA || !sizeB) exit(1);
+    
+    minNum=v[0];
+    minIndex=0;
+
+    for(index=1 ; index<sizeV ; index++ )
+        if(v[index]<minNum){
+            minNum=v[index];
+            minIndex=index;
+        }
+
+    return minIndex;
+}
+
+
+
+//------------------------------------------------
+// EXERCICIO 38 10/10 
+//------------------------------------------------
+
+void somasAc (int v[], int Ac[], int sizeV){
+    int indexAc=0,percorreV=0,soma=0;
+   
+    if(!sizeV) return;
+
+    while(indexAc<sizeV){
+        for(percorreV=0 ; percorreV<=indexAc ; percorreV++)
+            soma+=v[percorreV];
+        
+        Ac[indexAc]=soma;
+        soma=0;
+        indexAc++;
+    }
+}
+
+
+
+
+//------------------------------------------------
+// EXERCICIO 39 10/10 
+//------------------------------------------------
+
+int triSup (int dim, float m[dim][dim]){
+    int linha=0,coluna=0;
+
+    for(linha=0 ; linha<dim ; linha++)
+        for(coluna=0 ; coluna<dim && coluna<linha ; coluna++){
+            if(m[linha][coluna]!=(0,0) && coluna<linha)
+                return 0; // 0 -> FALSE
+        }
+    
+    return 1;
+}
+
+
+
+
+//------------------------------------------------
+// EXERCICIO 40 10/10 
+//------------------------------------------------
+
+void transposta (int sizeM , float m[sizeM][sizeM]){
+    
+    int linha=0,coluna=0;
+    float temp;
+
+    for(linha=0 ; linha<dim ; linha++)
+        for(coluna=0 ; coluna<dim && coluna<linha ; coluna++){
+            temp=m[linha][coluna];
+            m[linha][coluna]=m[coluna][linha];
+            m[coluna][linha]=temp;
+        }
+}
+
+
+
+
+
+//------------------------------------------------
+// EXERCICIO 41 10/10 
+//------------------------------------------------
+
+void addTo (int maxL, int maxC, int a[maxL][maxC], int b[maxL][maxC]){
+    int linha=0,coluna=0;
+    
+    for(linha ; linha<maxL ; linha++)
+        for(coluna=0 ; coluna<maxC ; coluna++)
+            a[linha][coluna]+=b[linha][coluna];
+}
+
+
+
+
+//------------------------------------------------
+// EXERCICIO 42 10/10 
+//------------------------------------------------
+
+// v1 e v2 sao arrays de 0(zero) e 1 correspondete aos indices
+int unionSet (int dim, int v1[dim], int v2[dim], int r[dim]){
+    int index=0,contador=0;
+    
+    if(!dim) return 0;
+
+    while(index<dim){
+        if( v1[index] || v2[index] ){
+            r[index]=1;
+            contador++;
+        }
+        else
+            r[index]=0;
+        index++;
+    }
+    return contador;
+}
+
+
+
+
+//------------------------------------------------
+// EXERCICIO 43 10/10 
+//------------------------------------------------
+
+int intersectSet (int dim, int v1[dim], int v2[dim], int r[dim]){
+    int index=0,contador=0;
+    
+    if(!dim) return 0;
+
+    while(index<dim){
+        if( v1[index] && v2[index] ){
+            r[index]=1;
+            contador++;
+        }
+        else
+            r[index]=0;
+        index++;
+    }
+    return contador;
+}
+
+
+
+
+//------------------------------------------------
+// EXERCICIO 43 10/10 
+//------------------------------------------------
+
+int intersectMSet (int dim, int v1[dim], int v2[dim], int r[dim]){
+    return 1;
+} 
+
 
