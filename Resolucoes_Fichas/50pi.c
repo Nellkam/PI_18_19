@@ -2,6 +2,18 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <math.h>
+
+
+typedef enum movimento {Norte, Oeste, Sul, Este} Movimento;
+
+typedef struct posicao {
+    int x, y;
+} Posicao;
+
+
+
+
 
 
 
@@ -992,7 +1004,7 @@ int triSup (int dim, float m[dim][dim]){
 
     for(linha=0 ; linha<dim ; linha++)
         for(coluna=0 ; coluna<dim && coluna<linha ; coluna++){
-            if(m[linha][coluna]!=(0,0) && coluna<linha)
+            if(m[linha][coluna]!=(0.0) && coluna<linha)
                 return 0; // 0 -> FALSE
         }
     
@@ -1088,11 +1100,150 @@ int intersectSet (int dim, int v1[dim], int v2[dim], int r[dim]){
 
 
 //------------------------------------------------
-// EXERCICIO 43 10/10 
+// EXERCICIO 44 
 //------------------------------------------------
 
 int intersectMSet (int dim, int v1[dim], int v2[dim], int r[dim]){
     return 1;
 } 
 
+
+
+
+
+//------------------------------------------------
+// EXERCICIO 45 
+//------------------------------------------------
+
+int unionMSet (int dim,int v1[dim], int v2[dim], int r[dim]){
+    return 1;
+}
+
+
+
+
+
+//------------------------------------------------
+// EXERCICIO 46 
+//------------------------------------------------
+
+int cardinalMSet (int dim, int v[dim]){
+    return 1;
+}
+
+
+
+
+
+//------------------------------------------------
+// EXERCICIO 47 10/10 
+//------------------------------------------------
+
+Posicao posFinal (Posicao inicial, Movimento mov[], int sizeMov){
+    sizeMov--;
+    while(sizeMov!=-1){
+        if( mov[sizeMov]==Norte )
+            inicial.y+=1;
+        else if( mov[sizeMov]==Sul )
+            inicial.y-=1;
+        else if( mov[sizeMov]==Este )
+            inicial.x+=1;
+        else ( mov[sizeMov]==Oeste )
+            inicial.x-=1;
+
+        sizeMov--;
+    }
+    return inicial;
+}
+
+
+
+
+//------------------------------------------------
+// EXERCICIO 48 10/10 
+//------------------------------------------------
+
+int caminho (Posicao inicial, Posicao final, Movimento mov[], int sizeMov){
+    int contaMovimentos=0,index=0;
+    
+    while(
+            inicial.x!=final.x || 
+            inicial.y!=final.y
+         )
+         {
+            
+            if(contaMovimentos==sizeMov) return -1;
+            
+            if(inicial.x>final.x){
+                inicial.x-=1;
+                mov[index++]=Oeste;
+            }
+        
+            else if(inicial.x<final.x){
+                inicial.x+=1;
+                mov[index++]=Este;
+            }
+
+            else if(inicial.y>final.y){
+                inicial.y-=1;
+                mov[index++]=Sul;
+            }
+        
+            else {
+                inicial.y+=1;
+                mov[index++]=Norte;
+            }
+            contaMovimentos++;
+        }
+
+    return contaMovimentos;
+}
+
+
+
+
+
+//------------------------------------------------
+// EXERCICIO 49 10/10 
+//------------------------------------------------
+
+int maisCentral (Posicao pos[], int sizePos){
+    float distancia=0.0, menorDistancia;
+    int menorindice,index=1;
+    
+    menorindice=0;
+    menorDistancia= sqrt( (pos[0].x)*(pos[0].x) + (pos[0].y)*(pos[0].y) );
+    
+        while(index<sizePos){
+            
+            distancia=sqrt( (pos[index].x)*(pos[index].x) + (pos[index].y)*(pos[index].y)  );
+            
+            if(distancia<menorDistancia){
+                menorDistancia=distancia;
+                menorindice=index;
+            }
+            index++;
+            distancia=0.0;
+        }
+    return menorindice;
+}
+
+
+
+
+//------------------------------------------------
+// EXERCICIO 50 10/10 
+//------------------------------------------------
+
+int vizinhos (Posicao p, Posicao pos[], int sizePos){
+    int index=0,contador=0;
+
+    for( ; index<sizePos ; index++ ){
+        if( (pos[index].x-p.x==1 || pos[index].x-p.x==-1) && pos[index].y==p.y  )
+            contador++;
+        else if ( (pos[index].y-p.y==1 || pos[index].y-p.y==-1) && pos[index].x==p.x )
+            contador++;
+    }
+    return contador;    
+}
 
