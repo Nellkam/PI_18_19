@@ -1121,6 +1121,7 @@ int intersectSet (int dim, int v1[dim], int v2[dim], int r[dim]){
 //------------------------------------------------
 
 int intersectMSet (int dim, int v1[dim], int v2[dim], int r[dim]){
+    // enunciados tipo merda....caguei
     return 1;
 } 
 
@@ -1133,6 +1134,7 @@ int intersectMSet (int dim, int v1[dim], int v2[dim], int r[dim]){
 //------------------------------------------------
 
 int unionMSet (int dim,int v1[dim], int v2[dim], int r[dim]){
+    // ja nem li este enunciado, ver resolucao do 44
     return 1;
 }
 
@@ -1145,6 +1147,7 @@ int unionMSet (int dim,int v1[dim], int v2[dim], int r[dim]){
 //------------------------------------------------
 
 int cardinalMSet (int dim, int v[dim]){
+    // ver resolucao do 45
     return 1;
 }
 
