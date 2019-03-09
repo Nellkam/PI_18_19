@@ -274,7 +274,7 @@ void myStrnoV (char* s){
 
 
 //------------------------------------------------
-// EXERCICIO 13
+// EXERCICIO 13 10/10
 //------------------------------------------------
 
 void truncW (char* t, int n){
@@ -284,9 +284,10 @@ void truncW (char* t, int n){
         
         // se for inicio de palavra
         if( (t[i]!=' ' && i==0) || (t[i]!=' ' && t[i-1]==' ') ){
-            
+    
             //calcula i para truncar
-            for(counter=0 ; t[i]!=' ' && counter<=n ; i++,counter++ );
+            if(n>0)
+                for(counter=1 ; t[i]!=' ' && counter<=n ; i++,counter++ );
 
             //calcula indice termino palavra (espaco ou '\0')
             for(space_end=i ; t[space_end]!=' ' && t[space_end]!='\0' ; space_end++);            
@@ -301,7 +302,7 @@ void truncW (char* t, int n){
             else {
                 for(j=i ; t[space_end]!='\0' ; j++,space_end++)
                     t[j]=t[space_end]; // trunca
-                t[space_end]='\0'; // marcar novo fim de string
+                t[j]='\0'; // marcar novo fim de string
             }          
         }       
         
@@ -387,37 +388,51 @@ int iguaisConsecutivos (char* s){
 
 
 //------------------------------------------------
-// EXERCICIO 16
+// EXERCICIO 16 10/10
 //------------------------------------------------
 
 int difConsecutivos (char* s){
-    
-    // i_maxSeq -> indice sequencia maxima
-    // ch_cmp -> indice actual em s
-    // i -> indice de comparacao
-    
-    int i,i_maxSeq=0,ch_cmp=0,maxCount=0,currentCount=1;
+    //temp e um array de construcao dos diferentes consecutivos
+    char temp[strlen(s)+1];
+    int index=0,index2=0,maxDif=0,counter=0,existe=0,i=0;
 
-    while( s[ch_cmp]!='\0' ){
-        
-        for ( i=ch_cmp+1 ; s[i]!=s[i-1] && s[i]!='\0' && s[i]!='\n' ; i++)
-            currentCount++;
-        
-        if(currentCount>maxCount){
-            maxCount=currentCount;
-            i_maxSeq=ch_cmp;
+    temp[0]='\0';
+
+    // percorre a string s
+    for(index= 0 ; s[index]!='\0' ; index++){
+        // percorre enquanto forem diferentes consecutivos comparando e fazendo update a temp
+        for (index2=index,counter=0 ; ; index2++,counter++){
+            
+            // se dif consectuvos chega a fim string conta e termina
+            if(s[index2]=='\0'){
+                if(counter>maxDif)
+                    maxDif=counter;
+                return maxDif;
+            }
+            
+            // verifica se char ja existe em temp
+            for(i=0,existe=0 ; i<strlen(temp) ; i++)
+                if(temp[i]==s[index2]){
+                    existe=1;
+                    break;
+                }
+            // fim vericaçao
+            
+            // se char ja existe -> conta -> reset temp -> next index
+            if(existe){
+                if(counter>maxDif)
+                    maxDif=counter;
+                temp[0]='\0';
+                break;                
+            }
+            
+            // se char nao existe adiciona a temp
+            temp[strlen(temp)+1]='\0';
+            temp[strlen(temp)]=s[index2];
+            // next index2
         }
-
-        currentCount=1;
-        ch_cmp++;
     }
-
-    printf("Maior sequencia de chars diferentes e de %d chars: \"",maxCount);
-    for(i=maxCount ; i>0 ; i--,i_maxSeq++)
-        printf("%c",s[i_maxSeq]);
-    printf("\"\n\n");
-    
-    return maxCount;
+    return maxDif;
 }
 
 
@@ -931,7 +946,7 @@ int comunsOrd (int a[],int sizeA, int b[], int sizeB){
 
 
 //------------------------------------------------
-// EXERCICIO 36 
+// EXERCICIO 36 10/10
 //------------------------------------------------
 
 int comuns (int a[], int sizeA, int b[], int sizeB){
@@ -942,8 +957,10 @@ int comuns (int a[], int sizeA, int b[], int sizeB){
     //procura do vector a em b
     for(indexA=0 ; indexA<sizeA ; indexA++)
         for(indexB=0 ; indexB<sizeB ; indexB++)
-            if(a[indexA]==b[indexB])
+            if(a[indexA]==b[indexB]){
                 contador++;
+                break;
+            }
 
     return contador;
 }
@@ -957,7 +974,7 @@ int comuns (int a[], int sizeA, int b[], int sizeB){
 int minInd (int v[], int sizeV){
     int index=1,minIndex,minNum;
     
-    if(!sizeA || !sizeB) exit(1);
+    if(!sizeV) exit(1);
     
     minNum=v[0];
     minIndex=0;
@@ -1018,7 +1035,7 @@ int triSup (int dim, float m[dim][dim]){
 // EXERCICIO 40 10/10 
 //------------------------------------------------
 
-void transposta (int sizeM , float m[sizeM][sizeM]){
+void transposta (int dim , float m[dim][dim]){
     
     int linha=0,coluna=0;
     float temp;
@@ -1148,7 +1165,7 @@ Posicao posFinal (Posicao inicial, Movimento mov[], int sizeMov){
             inicial.y-=1;
         else if( mov[sizeMov]==Este )
             inicial.x+=1;
-        else ( mov[sizeMov]==Oeste )
+        else
             inicial.x-=1;
 
         sizeMov--;
@@ -1246,4 +1263,3 @@ int vizinhos (Posicao p, Posicao pos[], int sizePos){
     }
     return contador;    
 }
-
