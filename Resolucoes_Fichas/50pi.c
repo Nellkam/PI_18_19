@@ -120,7 +120,7 @@ int bitsUm (unsigned int n){
 
 
 //------------------------------------------------
-// EXERCICIO 5
+// EXERCICIO 5 10/10
 //------------------------------------------------
 // enunciado merdoso -> conta quantos bits a zero seguidos a contar do bit mais à direita
 // max 32 bits -> input 0: 32 bits a zero
