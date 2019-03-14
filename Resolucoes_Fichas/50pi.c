@@ -122,13 +122,26 @@ int bitsUm (unsigned int n){
 //------------------------------------------------
 // EXERCICIO 5
 //------------------------------------------------
-
+// enunciado merdoso -> conta quantos bits a zero seguidos a contar do bit mais à direita
+// max 32 bits -> input 0: 32 bits a zero
 int trailingZ (unsigned int n){
+    int howMany0=0;
     
-    // enunciado merdoso nao faz sentido......wtf
-
-    return 0;
+    if(!n) return 32;
+    
+    while(n){
+        if( !(n%2) )
+            howMany0++;
+        else
+            break;
+        
+        n=n/2;
+    }
+    
+    return howMany0;
 }
+
+
 
 
 
@@ -1117,12 +1130,19 @@ int intersectSet (int dim, int v1[dim], int v2[dim], int r[dim]){
 
 
 //------------------------------------------------
-// EXERCICIO 44 
+// EXERCICIO 44 10/10 
 //------------------------------------------------
 
 int intersectMSet (int dim, int v1[dim], int v2[dim], int r[dim]){
-    // enunciados tipo merda....caguei
-    return 1;
+    int index,nelementos=0;
+    
+    for(index=0 ; index<dim ; index++){
+        r[index]= ( v1[index]<v2[index] ) ? v1[index] : v2[index];
+        if(r[index])
+            nelementos++;
+    }
+
+    return nelementos;
 } 
 
 
@@ -1134,8 +1154,15 @@ int intersectMSet (int dim, int v1[dim], int v2[dim], int r[dim]){
 //------------------------------------------------
 
 int unionMSet (int dim,int v1[dim], int v2[dim], int r[dim]){
-    // ja nem li este enunciado, ver resolucao do 44
-    return 1;
+    int index,nelementos=0;
+    
+    for(index=0 ; index<dim ; index++){
+        r[index] = ( v1[index]>v2[index] ) ? v1[index] : v2[index];
+        if(r[index])
+            nelementos++;
+    }
+
+    return nelementos;
 }
 
 
@@ -1143,12 +1170,16 @@ int unionMSet (int dim,int v1[dim], int v2[dim], int r[dim]){
 
 
 //------------------------------------------------
-// EXERCICIO 46 
+// EXERCICIO 46 10/10 
 //------------------------------------------------
 
 int cardinalMSet (int dim, int v[dim]){
-    // ver resolucao do 45
-    return 1;
+    int index,soma=0;
+
+    for(index=0 ; index<dim ; index++)
+        soma+=v[index];
+
+    return soma;
 }
 
 
